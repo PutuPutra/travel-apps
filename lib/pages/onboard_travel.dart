@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:travel_apps/models/onboard_model.dart';
 import 'package:travel_apps/pages/travel_home_screen.dart';
 import 'package:travel_apps/style/color.dart';
-// import 'package:cached_network_image/cached_network_image.dart';
 
 class TravelOnBoardingScreen extends StatefulWidget {
   const TravelOnBoardingScreen({super.key});
@@ -13,6 +12,7 @@ class TravelOnBoardingScreen extends StatefulWidget {
 
 class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
   int currentIndex = 0;
+
   Widget dotIndicator(int index) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
@@ -28,6 +28,9 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -44,15 +47,19 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                   ? Image.asset(
                       onboardItem.image,
                       fit: BoxFit.cover,
+                      width: screenWidth,
+                      height: screenHeight,
                     )
                   : Image.network(
                       onboardItem.image,
                       fit: BoxFit.cover,
+                      width: screenWidth,
+                      height: screenHeight,
                     );
             },
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -70,9 +77,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                             (route) => false);
                       },
                       child: Visibility(
-                        visible: onboarding.length - 1 != currentIndex
-                            ? true
-                            : false,
+                        visible: onboarding.length - 1 != currentIndex,
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 15,
@@ -101,8 +106,8 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                       children: [
                         Text(
                           onboarding[currentIndex].name,
-                          style: const TextStyle(
-                            fontSize: 70,
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.12,
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
                             height: 1,
@@ -116,18 +121,18 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 245,
+              height: screenHeight * 0.35,
               child: Column(
                 children: [
                   Row(
@@ -155,7 +160,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                                   (route) => false);
                             },
                             child: Container(
-                              height: 75,
+                              height: screenHeight * 0.08,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 boxShadow: const [
@@ -185,7 +190,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                                       Icons.arrow_forward,
                                       color: Colors.white,
                                       size: 25,
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -220,7 +225,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

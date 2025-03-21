@@ -306,7 +306,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          Padding(
+                          SingleChildScrollView(
+                            // Tambahkan SingleChildScrollView di sini
                             padding: const EdgeInsets.all(10),
                             child: Text(
                               widget.destination.description,
@@ -323,7 +324,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -382,32 +383,35 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
               ),
             ),
             const Spacer(),
-            TextButton(
-              onPressed: () {},
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 40,
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: kButtonColor),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.confirmation_number_outlined,
-                      color: Colors.white,
-                    ),
-                    SizedBox(width: 15),
-                    Text(
-                      "Add to Cart",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 40,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: kButtonColor),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.confirmation_number_outlined,
                         color: Colors.white,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 12),
+                      Text(
+                        "Add to Cart",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

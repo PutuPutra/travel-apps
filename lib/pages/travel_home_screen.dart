@@ -5,7 +5,7 @@ import 'package:travel_apps/style/color.dart';
 import 'package:travel_apps/widgets/popular_place.dart';
 import 'package:travel_apps/widgets/recomendate.dart';
 
-import '../models/travel_model.dart'; // add this package first for icon
+import '../models/travel_model.dart';
 
 class TravelHomeScreen extends StatefulWidget {
   const TravelHomeScreen({super.key});
@@ -23,31 +23,33 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
     Icons.bookmark_outline,
     Icons.person_outline,
   ];
-  // for popular ites(filter the popular items only from model)
-  // this means only display those data whose category is popular
+
+  // Filter for popular and recommended destinations
   List<TravelDestination> popular =
       myDestination.where((element) => element.category == "popular").toList();
-  // this means only display those data whose category is recomend
   List<TravelDestination> recomendate =
       myDestination.where((element) => element.category == "recomend").toList();
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: headerParts(),
+      // appBar: headerParts(),
       body: Column(
         children: [
-          const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+          SizedBox(height: screenHeight * 0.05), // Proportional spacing
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Popular place",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05, // Scalable font size
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
@@ -55,22 +57,23 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
                 Text(
                   "See all",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: screenWidth * 0.04, // Scalable font size
                     color: blueTextColor,
                   ),
                 )
               ],
             ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: screenHeight * 0.015), // Proportional spacing
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(bottom: 40),
+            padding: EdgeInsets.only(
+                bottom: screenHeight * 0.05), // Scalable padding
             child: Row(
               children: List.generate(
                 popular.length,
                 (index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -90,15 +93,15 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Recomendation for you",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05, // Scalable font size
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
@@ -106,22 +109,22 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
                 Text(
                   "See all",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: screenWidth * 0.04, // Scalable font size
                     color: blueTextColor,
                   ),
                 )
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.02), // Proportional spacing
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               child: Column(
                 children: List.generate(
                   recomendate.length,
                   (index) => Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
+                    padding: EdgeInsets.only(bottom: screenHeight * 0.02),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -142,52 +145,6 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 22,
-                        ),
-                        decoration: BoxDecoration(
-                          color: kButtonColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                            icons.length,
-                            (index) => GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedPage = index;
-                                });
-                              },
-                              child: Icon(
-                                icons[index],
-                                size: 32,
-                                color: selectedPage == index
-                                    ? Colors.white
-                                    : Colors.white.withOpacity(0.4),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

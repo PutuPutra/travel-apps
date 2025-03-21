@@ -42,7 +42,7 @@ class Recomendate extends StatelessWidget {
                 Text(
                   destination.name,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 13,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
@@ -67,30 +67,36 @@ class Recomendate extends StatelessWidget {
                 const SizedBox(height: 5),
                 Row(
                   children: [
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "${destination.rate}",
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                    Expanded(
+                      // Menggunakan Expanded untuk memberikan ruang yang fleksibel
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "${destination.rate}",
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: " (${destination.review} reviews)",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black.withOpacity(0.6),
+                            TextSpan(
+                              text: " (${destination.review} reviews)",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        overflow: TextOverflow
+                            .ellipsis, // Menambahkan overflow untuk menangani teks yang terlalu panjang
+                        maxLines: 1, // Membatasi agar hanya satu baris
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
