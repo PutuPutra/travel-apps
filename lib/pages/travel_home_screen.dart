@@ -37,10 +37,10 @@ class _TravelHomeScreenState extends State<TravelHomeScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      // appBar: headerParts(),
+      appBar: headerParts(),
       body: Column(
         children: [
-          SizedBox(height: screenHeight * 0.05), // Proportional spacing
+          SizedBox(height: screenHeight * 0.02), // Proportional spacing
           Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
             child: Row(
