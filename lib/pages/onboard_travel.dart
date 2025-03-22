@@ -115,7 +115,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                         ),
                         const SizedBox(height: 20),
                         const Text(
-                          "We Travelin are ready to help you on\nvacation around Nepal",
+                          "We Travelin are ready to help you on\nvacation around Bali",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
@@ -131,9 +131,12 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              height: screenHeight * 0.35,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 0), // Set horizontal padding to 0
               child: Column(
+                mainAxisSize:
+                    MainAxisSize.min, // This ensures it stays at the bottom
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -144,9 +147,9 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                   ),
                   const SizedBox(height: 20),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(35),
+                    borderRadius: BorderRadius.circular(10),
                     child: Container(
-                      padding: const EdgeInsets.all(35),
+                      padding: const EdgeInsets.all(40),
                       color: Colors.white,
                       child: Column(
                         children: [
@@ -162,7 +165,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                             child: Container(
                               height: screenHeight * 0.08,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Colors.black12,
@@ -180,7 +183,7 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                                     Text(
                                       "Let's Get Started",
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 19,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -189,14 +192,14 @@ class _TravelOnBoardingScreenState extends State<TravelOnBoardingScreen> {
                                     Icon(
                                       Icons.arrow_forward,
                                       color: Colors.white,
-                                      size: 25,
+                                      size: 20,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 30),
+                          const SizedBox(height: 20),
                           const Text.rich(
                             TextSpan(
                               children: [
